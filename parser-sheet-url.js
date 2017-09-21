@@ -1,4 +1,5 @@
 const CDP = require('chrome-remote-interface');
+const fsPath = require('fs-path');
 
 CDP({
     host: 'localhost',
@@ -33,16 +34,9 @@ CDP({
 
     // Use set to get unique items only
     const uniqueLinks = new Set([...links]);
-
-
-    console.log('Node Id ', links)
-    console.log('Total Count ', links.length)
-
-    let {data} = await Page.captureScreenshot({
-        format: 'png',
-    });
-
-    // fs.writeFile('screenshot.png', data, 'base64', e => console.error(e));
-
+    var objToWrite = { links };
+    fsPath.writeFile('./profile-urls.json', JSON.stringify(objToWrite,null,2), function (err){
+        if(err) throw err;
+    })
     await client.close();
 });

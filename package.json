@@ -5,6 +5,8 @@
   "author": "Jacob",
   "license": "ISC",
   "dependencies": {
-    "chrome-remote-interface": "^0.22.0"
+    "chrome-pool": "^1.2.0",
+    "chrome-remote-interface": "^0.22.0",
+    "fs-path": "0.0.23"
   }
 }
