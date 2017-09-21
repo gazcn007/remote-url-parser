@@ -1,8 +1,8 @@
-# remote-url-parser
-A parser using headless chrome and chrome-remote-interface to imitate human interactions on Tableau Public Profile to get all urls for vizzes
+# AWS-LoadTester
+A parser using chrome-remote-interface to imitate human interactions on Tableau Public Profile to get all urls for vizzes
 
 ## Installions
-### Google Chrome Canary Installion
+### 1. Google Chrome Canary Installion
 On Mac, open a terminal:
 1. brew install chrome-canary
 ```bash
@@ -18,12 +18,53 @@ alias chrome='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Ch
 ```
 4. source ~/.bash_profile
 
-### chrome-remote-interface Installation
+### 2. NPM dependencies Installation
 `git clone` this remote and `npm install`
 
+### 3. Goad.io installation
+1. Download Goad.io versions for your OS from this link:
+[https://github.com/goadapp/goad/releases]()
+2. Put the binary file into your default app folder (i.e. on OSX, its /usr/local/bin
+
+### AFTER STEP 1,2,3, You are ~READY TO GO~
+
 ## Test Run
-1. open a terminal window, run 
+1. open a terminal window
 ```bash
 chrome --headless --disable-gpu --remote-debugging-port=9222 https://public-aws-poc.dev.tabint.net/profile/qa.tableau#
 ```
-2. open another terminal window (or you can bg the step 1), and run `node parser.js`
+2. open another terminal window (or you can `bg` the step 1), and run `node parser.js`
+3. First, you need to run `node sheet-url-parser.js`. What this does is it will open the QA Setup page ([https://public-aws-poc.dev.tabint.net/profile/qa.tableau]()), and imitate a actual user to scroll down to the bottom (show all hidden item), and inspect the DOM to find URLs to each of the vizzes. It will generate a JSON file called `profile-urls.json` under the current directory that has a list of urls parsed :
+
+	```json
+	{
+	"urls": [
+    "https://public-aws-poc.dev.tabint.net/profile/qa.tableau#!/vizhome/Coachella2015Lineup-GenreGeographyasdf_0/Coachella2015Viz",
+    ....    "https://public-aws-poc.dev.tabint.net/profile/qa.tableau#!/vizhome/Superstore3_0/Overview"]
+    }
+	```
+	
+4. Then, you need to run `node viz-url-parser.js`. This parser, different from the sheet-url-parser, is a parser for urls to each of the particular viz by inspecting the iframes. It will utilizes headless-chrome's tab pool to achieve parallelism. It will generate a viz-urls.json:
+	
+	```json
+	{
+  "urls": [
+    [
+      [
+        "/views/Coachella2015Lineup-GenreGeographyasdf_0/Coachella2015Viz?%3Aembed=y&%3AshowVizHome=no&%3Adisplay_count=y&%3Adisplay_static_image=y&%3AbootstrapWhenNotified=true"
+      ],
+      [
+        "/views/GottaVizEmAll_0/overallmetricsbytype?%3Aembed=y&%3AshowVizHome=no&%3Adisplay_count=y&%3Adisplay_static_image=y&%3AbootstrapWhenNotified=true"
+      ],
+      [
+        "/views/Superstore_7_21_16/Overview?%3Aembed=y&%3AshowVizHome=no&%3Adisplay_count=y&%3Adisplay_static_image=y&%3AbootstrapWhenNotified=true"
+      ]
+    ],...[]
+    }
+	```
+5. So far, you should have all the urls to vizzes through the automation process. Lets run Goad.io to deploy load testing via AWS-Lambda. Run `node goad-tester.js`.
+	-  _Make sure you have access to AWS first!_
+	
+	This script will use Goad.io to deploy lambda functions on AWS, then it will invoke the lambda functions and save results to `goad-results` folder.
+	
+6. Check `goad-results` folder for your load-test results
