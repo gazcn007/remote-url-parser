@@ -1,0 +1,82 @@
+{
+  "ap-northeast-1": {
+    "total-reqs": 3334,
+    "total-timed-out": 0,
+    "total-conn-error": 0,
+    "ave-time-to-first": 3290614,
+    "tot-bytes-read": 1907174,
+    "statuses": {
+      "403": 2043,
+      "503": 1291
+    },
+    "ave-time-for-req": 3307561,
+    "ave-req-per-sec": 892.9586,
+    "ave-kbytes-per-sec": 510839.62,
+    "slowest": 80441516,
+    "fastest": 1587184,
+    "region": "ap-northeast-1",
+    "fatal-error": "",
+    "finished": false,
+    "finished-lambdas": 1
+  },
+  "eu-west-1": {
+    "total-reqs": 3333,
+    "total-timed-out": 0,
+    "total-conn-error": 0,
+    "ave-time-to-first": 3484217,
+    "tot-bytes-read": 1910975,
+    "statuses": {
+      "403": 1943,
+      "503": 1390
+    },
+    "ave-time-for-req": 3510862,
+    "ave-req-per-sec": 853.6172,
+    "ave-kbytes-per-sec": 489452.72,
+    "slowest": 177719866,
+    "fastest": 1565040,
+    "region": "eu-west-1",
+    "fatal-error": "",
+    "finished": false,
+    "finished-lambdas": 1
+  },
+  "overall": {
+    "total-reqs": 10000,
+    "total-timed-out": 0,
+    "total-conn-error": 0,
+    "ave-time-to-first": 3408742,
+    "tot-bytes-read": 5693220,
+    "statuses": {
+      "403": 6745,
+      "503": 3255
+    },
+    "ave-time-for-req": 3430582,
+    "ave-req-per-sec": 2597.4163,
+    "ave-kbytes-per-sec": 1479069.5,
+    "slowest": 184770731,
+    "fastest": 1565040,
+    "region": "",
+    "fatal-error": "",
+    "finished": false,
+    "finished-lambdas": 0
+  },
+  "us-east-1": {
+    "total-reqs": 3333,
+    "total-timed-out": 0,
+    "total-conn-error": 0,
+    "ave-time-to-first": 3451433,
+    "tot-bytes-read": 1875071,
+    "statuses": {
+      "403": 2759,
+      "503": 574
+    },
+    "ave-time-for-req": 3473363,
+    "ave-req-per-sec": 850.8405,
+    "ave-kbytes-per-sec": 478777.2,
+    "slowest": 184770731,
+    "fastest": 1838405,
+    "region": "us-east-1",
+    "fatal-error": "",
+    "finished": false,
+    "finished-lambdas": 1
+  }
+}

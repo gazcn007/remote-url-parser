@@ -1,0 +1,28 @@
+Your IAM role for goad might be outdated, continue anyways? (y/n) [y]: [1mRegional results[0m
+
+Region: us-east-1
+[1m   TotReqs   TotBytes    AvgTime    AvgReq/s  (post)unzip[0m
+      3333     1.8 MB     0.007s      420.60     233 kB/s
+[1m   Slowest    Fastest   Timeouts  TotErrors[0m
+    0.139s     0.006s          0       3333
+Region: ap-northeast-1
+[1m   TotReqs   TotBytes    AvgTime    AvgReq/s  (post)unzip[0m
+      3334     1.9 MB     0.007s      409.43     227 kB/s
+[1m   Slowest    Fastest   Timeouts  TotErrors[0m
+    0.431s     0.006s          0       3334
+Region: eu-west-1
+[1m   TotReqs   TotBytes    AvgTime    AvgReq/s  (post)unzip[0m
+      3333     1.9 MB     0.007s      398.11     227 kB/s
+[1m   Slowest    Fastest   Timeouts  TotErrors[0m
+    0.146s     0.006s          0       3333
+
+[1mOverall[0m
+
+[1m   TotReqs   TotBytes    AvgTime    AvgReq/s  (post)unzip[0m
+     10000     5.6 MB     0.007s     1228.13     688 kB/s
+[1m   Slowest    Fastest   Timeouts  TotErrors[0m
+    0.431s     0.006s          0      10000
+[1mHTTPStatus   Requests[0m
+       403       8876
+       503       1124
+

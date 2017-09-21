@@ -1,6 +1,7 @@
 const fs = require('fs');
 const CDP = require('chrome-remote-interface');
 const ChromePool = require('chrome-pool');
+const fsPath = require('fs-path');
 
 async function process(urls){
     const chromepoll = await ChromePool.new({
@@ -49,19 +50,26 @@ async function process(urls){
 async function batchProcess(){
     fs.readFile("./profile-urls.json", "utf8", async (err, fileData)=>{
         var { urls } = JSON.parse(fileData);
+        var fullList = [];
         for (let i = 0; i<urls.length; i=i+3){
-            console.log('Batch Processing :', urls.slice(i,i+3))
+            console.log('Batch Processing :', i,' to ',i+3);
             var res = await process(urls.slice(i,i+3));
-            console.log("finished : ", res)
+            console.log("finished : ", res);
+            fullList.push(res);
         }
+        fsPath.writeFile('./viz-urls.json', JSON.stringify({urls: fullList},null,2), function (err){
+            if(err) throw err;
+        })
     });
     return; 
 }
 batchProcess();
+
 // process([ 'https://public-aws-poc.dev.tabint.net/profile/qa.tableau#!/vizhome/USIncomeDistribution_1/USIncomeDistribution',
 //   'https://public-aws-poc.dev.tabint.net/profile/qa.tableau#!/vizhome/BUG74669/Sheet1',
 //   'https://public-aws-poc.dev.tabint.net/profile/qa.tableau#!/vizhome/8-0-MoreVerySimple/Dashboard2',
 //   'https://public-aws-poc.dev.tabint.net/profile/qa.tableau#!/vizhome/8-0-MoreVerySimple_0/Sheet3' ])
+
 // function loadForScrot(url) {
 //     return new Promise(async (fulfill, reject) => {
 //         const tab = await CDP.New();
