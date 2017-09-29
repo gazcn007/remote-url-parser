@@ -1,0 +1,11 @@
+{
+    "numberOfRequests": 100,
+    "numberOfConcurrency": 10,
+    "scenerioRatios":{
+        "screenshot": 0.3,
+        "requests": 0.3,
+        "clicking": 0.3
+    },
+    "numberOfPagesToTest": 3,
+    "domainURL": "https://public-aws-poc.dev.tabint.net"
+}
